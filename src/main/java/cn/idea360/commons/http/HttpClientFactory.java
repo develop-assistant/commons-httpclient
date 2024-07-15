@@ -2,8 +2,6 @@ package cn.idea360.commons.http;
 
 import cn.idea360.commons.http.apache.ApacheHttpClientWrapper;
 import cn.idea360.commons.http.jdk.JdkHttpClientWrapper;
-import cn.idea360.commons.http.okhttp.OkHttpClientWrapper;
-import cn.idea360.commons.http.spring.RestTemplateWrapper;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
@@ -15,10 +13,6 @@ import java.io.IOException;
 public class HttpClientFactory {
 
 	private static final String APACHE_HTTP_CLIENT_SPI = "org.apache.hc.client5.http.classic.HttpClient";
-
-	private static final String OK_HTTP_SPI = "okhttp3.OkHttpClient";
-
-	private static final String REST_TEMPLATE_SPI = "org.springframework.web.client.RestTemplate";
 
 	/**
 	 * 无参入口
@@ -72,22 +66,6 @@ public class HttpClientFactory {
 
 		public static HttpClientWrapper createHttpClientWrapper(HttpConfig httpConfig) {
 			return new ApacheHttpClientWrapper(httpConfig);
-		}
-
-	}
-
-	private static class OkHttpClientAdapter {
-
-		public static HttpClientWrapper createHttpClientWrapper(HttpConfig httpConfig) {
-			return new OkHttpClientWrapper();
-		}
-
-	}
-
-	private static class RestTemplateAdapter {
-
-		public static HttpClientWrapper createHttpClientWrapper(HttpConfig httpConfig) {
-			return new RestTemplateWrapper();
 		}
 
 	}
