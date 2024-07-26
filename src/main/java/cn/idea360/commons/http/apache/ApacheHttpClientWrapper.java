@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.net.SocketTimeoutException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -115,7 +116,7 @@ public class ApacheHttpClientWrapper implements HttpClientWrapper {
 		HttpUriRequestBase httpRequest = new HttpPost(uri);
 		addHeaders(httpRequest, request.getHeaders());
 		if (Objects.nonNull(request.getBody())) {
-			httpRequest.setEntity(new StringEntity(request.getBody()));
+			httpRequest.setEntity(new StringEntity(request.getBody(), StandardCharsets.UTF_8));
 		}
 		return executeRequest(httpRequest);
 	}
@@ -126,7 +127,7 @@ public class ApacheHttpClientWrapper implements HttpClientWrapper {
 		HttpUriRequestBase httpRequest = new HttpPut(uri);
 		addHeaders(httpRequest, request.getHeaders());
 		if (Objects.nonNull(request.getBody())) {
-			httpRequest.setEntity(new StringEntity(request.getBody()));
+			httpRequest.setEntity(new StringEntity(request.getBody(), StandardCharsets.UTF_8));
 		}
 		return executeRequest(httpRequest);
 	}
@@ -137,7 +138,7 @@ public class ApacheHttpClientWrapper implements HttpClientWrapper {
 		HttpUriRequestBase httpRequest = new HttpPatch(uri);
 		addHeaders(httpRequest, request.getHeaders());
 		if (Objects.nonNull(request.getBody())) {
-			httpRequest.setEntity(new StringEntity(request.getBody()));
+			httpRequest.setEntity(new StringEntity(request.getBody(), StandardCharsets.UTF_8));
 		}
 		return executeRequest(httpRequest);
 	}
