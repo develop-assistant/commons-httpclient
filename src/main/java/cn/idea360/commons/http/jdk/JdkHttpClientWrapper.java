@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URLEncoder;
 import java.net.http.*;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
@@ -160,7 +159,7 @@ public class JdkHttpClientWrapper implements HttpClientWrapper {
 
 		if (params != null && !params.isEmpty()) {
 			String paramsString = params.entrySet().stream()
-					.map(e -> e.getKey() + "=" + URLEncoder.encode(e.getValue().toString(), StandardCharsets.UTF_8))
+					.map(e -> e.getKey() + "=" + e.getValue().toString())
 					.collect(Collectors.joining("&"));
 
 			if (query.isEmpty()) {
